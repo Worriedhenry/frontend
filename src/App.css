@@ -1,12 +1,73 @@
 .App {
   text-align: center;
+  display: flex;
+  height: 100vh;
+  
 }
+.m0p0{
+  margin: 0;
+  padding: 0;
+}
+.container-contain{
+  height: 75%;
+  width: 100%;
+  overflow-x: hidden;
+}
+.msges{
+  background-color: aqua;
+}
+.rooms-selecter{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.hidden-mist{
+  padding-top: 15px;
+  /* background-color: #1a237e; */
+  width: 100%;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+.useForm-FormatedMsg{
+  background-color: #0d47a1;
+  color: white;
+  width: auto;
+  max-width: 35vw;
+  margin: 1%;
+  height:15vh ;
+  min-width: 25vw;
+  border: 1px;
+  border-radius: 5%;
 
+}
+.useForm-container{
+  display: flex;
+  align-items: center;
+}
+.video-container{
+  display: flex;
+}
+.msg-time{
+  text-align: right;
+  margin: 0;
+  padding: 0;
+  font-size: 2vh;
+  padding-right: 1vh;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
+.left{
+  float:left;
+  clear:both
+}
+.right{
+  float:right;
+  clear:both;
+  flex-direction: row-reverse;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -14,7 +75,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #1a237e;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -23,9 +84,21 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.commcard{
+  width: 23vw;
+  display: flex;
+  justify-content: space-between;
+  background-color: #0d47a1;
+  color:white
+}
 .App-link {
-  color: #61dafb;
+  color: #1a237e;
+}
+.liked-users{
+  color: #0d47a1;
+  text-align: left;
+  background-color: #fbfcff;
+  max-height: 25vh;
 }
 
 @keyframes App-logo-spin {
