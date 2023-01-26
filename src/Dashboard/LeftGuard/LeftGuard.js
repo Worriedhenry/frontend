@@ -13,7 +13,7 @@ function LeftGuard(props){
     const [Alert,setAlert]=useState("none")
     const navigate=useNavigate()
     const clicked=(e)=>{
-        console.log("hi")
+        // console.log("hi")
         setComm(e)
         navigate(`/chats?name=${props.name}&comm=${e}`)  
     }
