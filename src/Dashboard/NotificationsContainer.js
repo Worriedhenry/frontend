@@ -20,7 +20,7 @@ export default function NotificatioinContainer({socket}) {
   useEffect(()=>{
     console.log(searchParams.get("name"))
       axios
-      .post("http://localhost:3001/notifications",{name:searchParams.get("name")})
+      .post("https://backend-production-c9c7.up.railway.app/notifications",{name:searchParams.get("name")})
       .then(function (response) {
         setError(response.data.error)
         setNotis(response.data.array)

@@ -108,7 +108,7 @@ props.socket.on("recieve",(e)=>{
         if(RoomName==="" || RoomType===""){
             return
         }
-        axios.post("http://localhost:3001/GenerateRooms",{username:searchParams.get('comm'),Class:RoomType,RoomName:RoomName})
+        axios.post("https://backend-production-c9c7.up.railway.app/GenerateRooms",{username:searchParams.get('comm'),Class:RoomType,RoomName:RoomName})
         console.log("socketted")
         props.socket.emit("EmitRefresh")
         setAlert("none")

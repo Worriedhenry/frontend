@@ -19,14 +19,14 @@ function SocketHandler({socket}){
     useEffect(()=>{
       console.log("hiii")
       async function admin(){
-        let res=await axios.post("http://localhost:3001/isadmin",{comm:searchParams.get("comm"),user:searchParams.get("name")})
+        let res=await axios.post("https://backend-production-c9c7.up.railway.app/isadmin",{comm:searchParams.get("comm"),user:searchParams.get("name")})
         if(res.data.error===200){
           setAdmin(true)
         }
     }
     admin()
         axios
-        .post("http://localhost:3001/comm",{name:searchParams.get("name"),comm:searchParams.get("comm")})
+        .post("https://backend-production-c9c7.up.railway.app/comm",{name:searchParams.get("name"),comm:searchParams.get("comm")})
         .then(function (response) {
           setError(response.data.error)
           setComm(response.data.comm)

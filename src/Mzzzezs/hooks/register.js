@@ -27,7 +27,7 @@ export default function Register() {
         
         }
         console.log("see")
-        let result= await axios.post('http://localhost:3001/reg',userData)
+        let result= await axios.post('https://backend-production-c9c7.up.railway.app/reg',userData)
         if(result.data.error!==200){
             setTimeout(() => setError(100), 3000);
             setError(result.data.error)

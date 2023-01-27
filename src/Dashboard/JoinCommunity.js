@@ -24,13 +24,13 @@ export default function JoinCommunity() {
 
     ))
         const GetComms=async (e)=>{
-            let result= await axios.post('http://localhost:3001/createe',{name:e})
+            let result= await axios.post('https://backend-production-c9c7.up.railway.app/createe',{name:e})
             array=result.data.data
             setComs(result.data.data)
             setPhone(e)
         }
     const joinComm =async (e,name)=>{
-        let result= await axios.post('http://localhost:3001/join',{comm:name,name:searchParams.get("name")})
+        let result= await axios.post('https://backend-production-c9c7.up.railway.app/join',{comm:name,name:searchParams.get("name")})
         console.log(result.data.error)
         if(result.data.error!==200){
           setError(result.data.error)

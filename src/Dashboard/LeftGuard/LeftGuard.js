@@ -31,7 +31,7 @@ function LeftGuard(props){
     }
     const LeaveConformed=()=>{
         setAlert("none")
-        axios.post("http://localhost:3001/LeaveConformed",{user:props.name,comm:props.comm})
+        axios.post("https://backend-production-c9c7.up.railway.app/LeaveConformed",{user:props.name,comm:props.comm})
         navigate("/chats?name="+props.name)
     }
     if(props.Communities===[]){

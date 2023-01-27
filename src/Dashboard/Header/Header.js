@@ -12,7 +12,7 @@ function Header(props){
     const [Rooms,setRooms]=useState(0)
     useEffect(() => {
         // console.log(props)
-        axios.post("http://localhost:3001/notifications",{name:searchParams.get("name")}).then((e)=>{
+        axios.post("https://backend-production-c9c7.up.railway.app/notifications",{name:searchParams.get("name")}).then((e)=>{
             if(e.data.array===undefined){
                 setBC(0)
             }

@@ -53,7 +53,7 @@ export default function Login() {
         name:phone,
         password:password
     }
-    let result= await axios.post("http://localhost:3001/login",data)
+    let result= await axios.post("https://backend-production-c9c7.up.railway.app/login",data)
     console.log(result)
     if(result.data.error!==200){
       setTimeout(() => setError(100), 3000);

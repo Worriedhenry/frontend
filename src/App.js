@@ -1,5 +1,4 @@
 import './App.css';
-import LeftGuard from './Dashboard/LeftGuard/LeftGuard';
 import {BrowserRouter,Routes,Route,Navigate} from "react-router-dom";
 import Header from './Dashboard/Header/Header';
 import Msg from './Mzzzezs/hooks/messages';
@@ -12,7 +11,7 @@ import JoinCommunity from './Dashboard/JoinCommunity';
 import Register from './Mzzzezs/hooks/register';
 import Notificatioin from './Dashboard/NotificationsContainer';
 import io from 'socket.io-client';
-const connection_url = 'http://localhost:3001';
+const connection_url = 'https://backend-production-c9c7.up.railway.app';
 const socket = io(connection_url, { transport: ['websocket'] });
 function App() {
   // if(localStorage.getItem('user')){

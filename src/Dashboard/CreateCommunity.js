@@ -27,7 +27,7 @@ export default function CreateCommunity() {
         Admin:searchParams.get("name")
     }
     
-    let result= await axios.post('http://localhost:3001/create',data)
+    let result= await axios.post('https://backend-production-c9c7.up.railway.app/create',data)
     console.log(result.data)
     if(result.data.error===200){
       navigate('/?name='+searchParams.get("name")+'&comm='+searchParams.get("comm"))

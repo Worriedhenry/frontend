@@ -8,11 +8,11 @@ export default function NotisCard(props){
     console.log(props.obj)
     const [searchParams,setSearchParam]=useSearchParams()
     const accepted =async()=>{
-        axios.post("http://localhost:3001/CommReqAccept",{from:props.obj.from,for:props.obj.for,id:props.obj._id,Admin:searchParams.get("name")})
+        axios.post("https://backend-production-c9c7.up.railway.app/CommReqAccept",{from:props.obj.from,for:props.obj.for,id:props.obj._id,Admin:searchParams.get("name")})
         props.socket.emit("EmitRefresh")
     }
     const rejected =async()=>{
-        axios.post("http://localhost:3001/CommReqReject",{from:props.obj.from,for:props.obj.for,id:props.obj._id,Admin:searchParams.get("name"),type:props.obj.format})
+        axios.post("https://backend-production-c9c7.up.railway.app/CommReqReject",{from:props.obj.from,for:props.obj.for,id:props.obj._id,Admin:searchParams.get("name"),type:props.obj.format})
         props.socket.emit("EmitRefresh")
     }
     if(props.obj.format==="request"){
