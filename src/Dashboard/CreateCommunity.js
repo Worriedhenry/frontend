@@ -10,11 +10,17 @@ import Errors from '../Mzzzezs/hooks/Errors/Errors';
 
 export default function CreateCommunity() {
     const navigate=useNavigate()
+    const styles = theme => ({
+      notchedOutline: {
+        borderWidth: "1px",
+        borderColor: "#1a237e"
+      }
+    })
     const [searchParams, setSearchParams] = useSearchParams();
     const [CommName,setPhone]=useState('')
     const [CommType,setPassword]=useState("Educational")
     const [error,setError]=useState(100)
-    const style={"width":"29.9vw","height":"9.8vh"}
+    const style={"width":"29.9vw","height":"9.8vh",'color':'#1a237e','border-top':'none','outline':'none'}
     useEffect(()=>(
         sessionStorage.clear()
     ))
@@ -26,7 +32,7 @@ export default function CreateCommunity() {
         type:CommType,
         Admin:searchParams.get("name")
     }
-    
+     
     let result= await axios.post('https://backend-production-c9c7.up.railway.app/create',data)
     console.log(result.data)
     if(result.data.error===200){
@@ -54,7 +60,7 @@ export default function CreateCommunity() {
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
             {/* <LockOutlinedIcon /> */}
           </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" style={{color:'#1a237e'}} variant="h5">
             Create Community
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
@@ -63,30 +69,17 @@ export default function CreateCommunity() {
               required
               fullWidth
               id="email"
+              variant='filled'
               onChange={(e) => setPhone(e.target.value)}
               value={CommName}
               label="Community Name"
-              name=""
-              autoComplete="email"
               autoFocus
             />
-            {/* <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              onChange={(e) => setPassword(e.target.value)}
-              value={CommType}
-              label="Community Name"
-              name="" 
-              autoComplete="email"
-              autoFocus
-            /> */}
             <select value={CommType} onChange={(e)=>{setPassword(e.target.value)}} onSelect={(e)=>{setPassword(e.target.value)}} style={style}>
               <optgroup>
-                <option value="Educational">Educational</option>
-                <option value="Personal"  >Personal</option>
-                <option value="Proffesional">Proffesional</option>
+                <option style={{color:'#1a237e'}} value="Educational">Educational</option>
+                <option style={{color:'#1a237e'}} value="Personal"  >Personal</option>
+                <option style={{color:'#1a237e'}} value="Proffesional">Proffesional</option>
               </optgroup>
               </select>
             <Typography component="h5" color="error" variant="text">
@@ -99,6 +92,7 @@ export default function CreateCommunity() {
             <Button
               type="submit"
               fullWidth
+              style={{backgroundColor:'#1a237e'}}
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             //   onClick={HandleChange}

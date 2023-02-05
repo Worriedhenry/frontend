@@ -1,5 +1,7 @@
 .Header-container{
-    background-color: #0d47a1;
-    width: 85vw;
-    height: 15vh;
+    background-color: #1a237e;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 15%;
 }

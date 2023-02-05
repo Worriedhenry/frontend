@@ -11,8 +11,10 @@ import JoinCommunity from './Dashboard/JoinCommunity';
 import Register from './Mzzzezs/hooks/register';
 import Notificatioin from './Dashboard/NotificationsContainer';
 import io from 'socket.io-client';
+import Construct from './LOGO';
+import AxiosLink from './Mzzzezs/hooks/AxiosLin';
 const connection_url = 'https://backend-production-c9c7.up.railway.app';
-const socket = io(connection_url, { transport: ['websocket'] });
+const socket = io(AxiosLink, { transport: ['websocket'] });
 function App() {
   // if(localStorage.getItem('user')){
 
@@ -22,9 +24,9 @@ function App() {
     <Routes>
     <Route path='/' element={!localStorage.getItem('user') ? <Login/> : <Navigate replace to={"/chats?name="+localStorage.getItem('user')+'&comm=null'} />} />
     <Route path='/Chats' element= {<SocketHandler socket={socket} />}/>
-    <Route path='/create' element= {<div className="App"><Left /><div><Header socket={socket}/><CreateCommunity/></div></div>}/>
-    <Route path='/join' element= {<div className="App"><Left /><div><Header socket={socket}/><JoinCommunity/></div></div>}/>
-    <Route path='/peer' element= {<div className="App"><Left /><div><Header socket={socket}/><PeerComponent/></div></div>}/>
+    <Route path='/create' element= {<div className="App"><Header socket={socket}/><div style={{'height':"100%",'display':'flex'}}><Left /><CreateCommunity/></div></div>}/>
+    <Route path='/join' element= {<div className="App"><Header socket={socket}/><div style={{'height':"100%",'display':'flex'}}><Left /><JoinCommunity/></div></div>}/>
+    <Route path='/peer' element= {<div className="App"><Header socket={socket}/><div style={{'height':"100%",'display':'flex'}}><Left /><Construct/></div></div>}/>
     <Route path='/register' element= {<div className="App"><Register/></div>}/>
     <Route path='/notification' element= {<Notificatioin socket={socket} />}/>
     </Routes>

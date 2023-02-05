@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Header.css"
-import { Badge, IconButton } from "@mui/material"
+import { Badge, ButtonGroup, IconButton } from "@mui/material"
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import { useNavigate,useSearchParams } from "react-router-dom";
 import ChatIcon from '@mui/icons-material/Chat';
 import axios from "axios";
+import logo from './logo.png'
+import VideoCameraFrontIcon from '@mui/icons-material/VideoCameraFront';
 function Header(props){
     const navigate=useNavigate()
     const [BadgeContent, setBC] =useState(0)
@@ -27,17 +29,26 @@ function Header(props){
     const chat=()=>{
         navigate('/chats?name='+searchParams.get("name")+'&comm=null')
     }
+    const Cam=()=>{
+        navigate('/peer?name='+searchParams.get("name")+'&comm=null')
+    }
     props.socket.on("refresh",()=>{
         console.log("renderri")
         setRooms(Rooms+1)
       })
     // const [arr,setArr]=useState([{name:"ChatBot",id:6969}])
-    const style={"position":"relative","top":"16px","color":"white"}
+    const style={"position":"relative","top":"16px","color":"white",'overflow':'visible'}
     return <div className="Header-container">
+        <img className="logo" src={logo} alt=""></img>
+        <div style={{marginRight:'1%'}} >
         <IconButton onClick={chat}>
-       <Badge aria-label="Chats"  badgeContent={0} style={style} max={9}><ChatIcon/></Badge></IconButton>
+       <Badge  aria-label="Chats"  badgeContent={0} style={style} max={9}><ChatIcon/></Badge></IconButton>
         <IconButton onClick={clicked}>
-       <Badge style={style} badgeContent={BadgeContent} showZero max={99}><NotificationsNoneIcon/></Badge></IconButton>
+       <Badge  style={style} badgeContent={BadgeContent} showZero max={99}><NotificationsNoneIcon/></Badge></IconButton>
+        <IconButton onClick={Cam}>
+       <Badge  style={style} variant="dot" showZero max={99}><VideoCameraFrontIcon/></Badge></IconButton>
+       
+       </div>
     </div>
 }
 

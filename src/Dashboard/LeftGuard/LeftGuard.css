@@ -1,9 +1,11 @@
 .leftGuard-Container{
     background-color: #1a237e;
-    height: 100vh;
-    width: 15vw;
+    height: 100%;
+    width: 15%;
+    display: flex;
+    flex-direction: column;
 }
 .logo{
-    object-fit: contain;
-    width: 100%;
+    object-fit: cover;
+    width: 11.5%;
 }

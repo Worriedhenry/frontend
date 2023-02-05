@@ -9,6 +9,7 @@ import LeftGuard from './LeftGuard/Left';
 import NotisCard from '../Mzzzezs/hooks/NotisCards';
 import Error from '../Mzzzezs/hooks/Errors/NoCommunity ';
 import Errors from '../Mzzzezs/hooks/Errors/Errors';
+import AxiosLink from '../Mzzzezs/hooks/AxiosLin';
 export default function NotificatioinContainer({socket}) {
   const [searchParams,setSearchParams]=useSearchParams()
   const [Noti,setNotis]=useState([])
@@ -20,7 +21,7 @@ export default function NotificatioinContainer({socket}) {
   useEffect(()=>{
     console.log(searchParams.get("name"))
       axios
-      .post("https://backend-production-c9c7.up.railway.app/notifications",{name:searchParams.get("name")})
+      .post(AxiosLink+"/notifications",{name:searchParams.get("name")})
       .then(function (response) {
         setError(response.data.error)
         setNotis(response.data.array)
@@ -30,11 +31,12 @@ export default function NotificatioinContainer({socket}) {
     setRomms(Rooms+1)
   }
   if(error===200){
-  return <div className="App"><LeftGuard socket={socket} name={searchParams.get("name")} comm={searchParams.get("comm")} /><div><Header socket={socket} />
+  return <div className="App"><Header socket={socket} /><div style={{'height':"100%",'display':'flex'}}><LeftGuard socket={socket} name={searchParams.get("name")} comm={searchParams.get("comm")} />
+  <div style={{display:"flex",flexDirection:"column"}}>
   <Button color="primary" onClick={refresh} variant="outlined">Refresh</Button>
   {Noti.map((e)=>(
     <NotisCard socket={socket} obj={e} />
-  ))}</div></div>
+  ))}</div></div></div>
                 }
-  return <div className="App"><LeftGuard  socket={socket}  name={searchParams.get("name")} comm={searchParams.get("comm")} /><div><Header socket={socket} /><div style={{"color":"#0d47a1"}}><Button color="primary" variant="outlined" onClick={refresh}>Refresh</Button>{Errors[999]}</div></div></div>
+  return <div className="App"><Header socket={socket} /><div style={{'height':"100%",'display':'flex'}}><LeftGuard  socket={socket}  name={searchParams.get("name")} comm={searchParams.get("comm")} /><div style={{"color":"#0d47a1"}}><Button color="primary" variant="outlined" onClick={refresh}>Refresh</Button>{Errors[999]}</div></div></div>
 }

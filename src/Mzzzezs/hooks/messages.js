@@ -7,7 +7,11 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box } from '@mui/system';
 import axios from 'axios';
+import AxiosLink from './AxiosLin';
 const Sender = (props) => {
+    useEffect(()=>{
+        console.log(props)
+    })
     const Navigate=useNavigate()
     const style = { color: "white", fontSize: "1.5vh" }
     const date = new Date();
@@ -108,15 +112,16 @@ props.socket.on("recieve",(e)=>{
         if(RoomName==="" || RoomType===""){
             return
         }
-        axios.post("https://backend-production-c9c7.up.railway.app/GenerateRooms",{username:searchParams.get('comm'),Class:RoomType,RoomName:RoomName})
+        axios.post(AxiosLink+"/GenerateRooms",{username:searchParams.get('comm'),Class:RoomType,RoomName:RoomName})
         console.log("socketted")
         props.socket.emit("EmitRefresh")
         setAlert("none")
         // Navigate("/chats?name="+searchParams.get("name")+"&comm="+searchParams.get("comm"))
     }
-    if(props.isAdmin===true){
+    if(props.isAdmin===1){
         return (
-            <>      <div className='container-contain'>
+            <div className='container-contain'>      
+            <div className='container'>
                     <div style={{"padding":"8px","width":"100%"}} id="scroll" ref={messagesEndRef}>
                         <select style={{"padding":"8px","width":"50%","color":"#0d47a1","border":"3px solid #0d47a1"}} value={select} onChange={(e)=>clicked(e.target.value)}>
                         {props.Rooms.map((e)=>(
@@ -128,7 +133,6 @@ props.socket.on("recieve",(e)=>{
                     </div>
                     <div className='hidden-mist' style={{"display":Alert}}><TextField onChange={(e)=>setRN(e.target.value)}  size="small" variant="outlined" label="Enter Room Name"  ></TextField>
                     <p> <FormControl  >
-                        {/* <InputLabel id="type">Room Type</InputLabel> */}
                         <Select variant="outlined" value={RoomType}  fullWidth size='large' style={{"width":"16vw","padding":"0px"}}  onChange={(e)=>handleRoom(e.target.value)} >
                             <MenuItem value={"ChatRooms"}>ChatRooms</MenuItem>
                             <MenuItem value={"VoiceRooms"}>VoiceRooms</MenuItem>
@@ -148,39 +152,30 @@ props.socket.on("recieve",(e)=>{
                     <Box component="form" onSubmit={onSubmit} noValidate sx={{ mt: 1 }}>
                     <TextField id="fullWidth" style={style} size="small" variant="filled" label="Type Message" value={messages} color="primary" onChange={e=>setMessages(e.target.value)}></TextField>
                     <Button type='submit' size="large" variant="contained">Send</Button></Box>
-            </>
+            </div>
                 )
                 } 
     // return <><p></p></>
 return (
-<>      <div className='container-contain'>
-<div style={{"padding":"8px","width":"100%"}} id="scroll" ref={messagesEndRef}><select style={{"padding":"8px","width":"50%","color":"#0d47a1","border":"3px solid #0d47a1"}} value={select} onChange={(e)=>clicked(e.target.value)}>
-{props.Rooms.map((e)=>(
-    <option>{e}</option>
-))}
-</select><IconButton disabled color="primary" onClick={AddRoom} size='large'><AddBoxIcon size='large' /></IconButton> </div>
-<div className='hidden-mist' style={{"display":Alert}}>
-                    <TextField  size="small" variant="outlined" label="Enter Room Name"  ></TextField>
-                    <FormControl >
-                        <InputLabel>Room Type</InputLabel>
-                        <Select value="ChatRomms" label="Room Type" onChange={handleRoom}>
-
-                        </Select>
-                    </FormControl>
-                    <p><TextField  size="small" variant="outlined" label="Enter Room Name"  ></TextField></p>
-                    <ButtonGroup>
-                        <Button color="success" >Request</Button>
-                        <Button onClick={cancleDeletion} color="error">Cancel</Button>
-                    </ButtonGroup>
-                    </div>
-{arr.map((e,index)=> <MsgFormat socket={props.socket} key={index} room={select} name={e.name} msg={e.msg} side={e.side} time={e.time} likess={e.likes} id={e.id} />)}
-
-</div>
-{/* <div className='msgconatiner'></div> */}
-<TextField id="fullWidth" style={style} size="small" variant="filled" label="Type Message" value={messages} color="primary" onChange={e=>setMessages(e.target.value)}></TextField>
-<Button onClick={(e)=>onSubmit(e)} size="large" variant="contained">Send</Button>
-</>
-)
+    <div className='container-contain'>      
+    <div className='container'>
+            <div style={{"padding":"8px","width":"100%"}} id="scroll" ref={messagesEndRef}>
+                <select style={{"padding":"8px","width":"50%","color":"#0d47a1","border":"3px solid #0d47a1"}} value={select} onChange={(e)=>clicked(e.target.value)}>
+                {props.Rooms.map((e)=>(
+                    <option>{e}<AddBoxIcon/></option>
+                ))}
+            </select>
+            </div >
+            <div className='msges'>
+        {arr.map((e,index)=> <MsgFormat socket={props.socket} key={index} room={select} name={e.name} msg={e.msg} side={e.side} time={e.time} likess={e.likes} id={e.id} />)}
+        </div>
+         </div>
+            {/* <div className='msgconatiner'></div> */}
+            <Box component="form" onSubmit={onSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField id="fullWidth" style={style} size="small" variant="filled" label="Type Message" value={messages} color="primary" onChange={e=>setMessages(e.target.value)}></TextField>
+            <Button type='submit' size="large" variant="contained">Send</Button></Box>
+    </div>
+        )
 } 
 
 export default Sender; 

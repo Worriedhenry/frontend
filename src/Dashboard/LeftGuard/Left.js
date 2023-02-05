@@ -11,7 +11,6 @@ function Left(props){
         navigate(`/?name=${props.name}&comm=${e}`)
     }
     return <div className="leftGuard-Container">
-        <img className="logo" src="https://images-platform.99static.com//b6HxR1x9W8MIaq136g2mfhyVm6U=/224x2209:809x2794/fit-in/590x590/99designs-contests-attachments/114/114944/attachment_114944189" alt=""></img>
         <p style={{"width":"100%","height":"0.4vh","backgroundColor":"#1976d2"}}></p>
         <ButtonGroup  orientation="vertical" style={{"margin":"10px"}}>
             <Button  style={{"color":"white"}}>Create Community</Button>
